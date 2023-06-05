@@ -9,6 +9,6 @@ def packet_callback(packet):
         elif 'PASS' in payload:
             password = payload.split('PASS ')[1].split('\r\n')[0]
             print(f"Password: {password}")
-    for i in rdpcap('ftp-total.pcapng'):
-            packet_callback(i)
-#sniff(filter='tcp port 21', prn=packet_callback, store=0)
+for i in rdpcap('ftp-total.pcapng'):
+    packet_callback(i)
+sniff(filter='tcp port 21', prn=packet_callback, store=0)
