@@ -14,4 +14,3 @@ for paquet in trames:
         print(f" Nom : {paquet[DNS].qd.qname}")
         print(f"Type : {paquet[DNS].qd.qtype}")
 
-sniff(filter='upd port 53', prn=trames, store=0)
