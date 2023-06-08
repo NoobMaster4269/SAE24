@@ -1,6 +1,6 @@
 from scapy.all import *
-
-def packet_callback(packet):
+trames = rdpacp('ftp-total.pcapng')
+for packet in trames:
     if packet.haslayer(TCP) and packet.haslayer(Raw):
         payload = packet[Raw].load.decode('utf-8', errors='ignore')
         if 'USER' in payload:
@@ -9,6 +9,4 @@ def packet_callback(packet):
         elif 'PASS' in payload:
             password = payload.split('PASS ')[1].split('\r\n')[0]
             print(f"Password: {password}")
-for i in rdpcap('ftp-total.pcapng'):
-    packet_callback(i)
-sniff(filter='tcp port 21', prn=packet_callback, store=0)
+
